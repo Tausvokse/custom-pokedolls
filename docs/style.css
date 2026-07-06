@@ -682,156 +682,172 @@ pre code {
     color: var(--text-secondary);
 }
 
-/* TAB 2: Trivia Widget Banner */
-.trivia-widget-banner {
-    background: linear-gradient(135deg, rgba(157, 78, 221, 0.25) 0%, rgba(31, 40, 51, 0.85) 100%);
-    border: 2px solid var(--accent-purple);
+/* TAB 2: Showcase Carousel CSS styling */
+.showcase-carousel-section {
+    background: linear-gradient(135deg, rgba(31, 40, 51, 0.8) 0%, rgba(69, 162, 158, 0.15) 100%);
+    border: 2px solid var(--accent-cyan);
     border-radius: var(--radius-lg);
     padding: 2.5rem;
     margin-bottom: 3rem;
-    box-shadow: 0 0 30px var(--accent-purple-glow), 0 20px 40px rgba(0,0,0,0.5);
+    box-shadow: 0 0 30px var(--accent-cyan-glow), 0 20px 40px rgba(0,0,0,0.5);
     position: relative;
     overflow: hidden;
 }
 
-.trivia-header {
+.carousel-header {
     text-align: center;
     margin-bottom: 2rem;
 }
 
-.trivia-tag {
+.carousel-tag {
     display: inline-block;
-    background: var(--accent-purple);
-    color: #fff;
+    background: var(--accent-cyan);
+    color: #000;
     font-size: 0.75rem;
     font-weight: 800;
     padding: 0.3rem 0.8rem;
     border-radius: 999px;
     letter-spacing: 1px;
     margin-bottom: 0.8rem;
-    box-shadow: 0 0 15px var(--accent-purple-glow);
+    box-shadow: 0 0 15px var(--accent-cyan-glow);
 }
 
-.trivia-header h2 {
+.carousel-header h2 {
     font-size: 2.2rem;
     font-weight: 800;
     color: #fff;
     margin-bottom: 0.5rem;
 }
 
-.trivia-header p {
+.carousel-header p {
     color: var(--text-secondary);
     font-size: 1.1rem;
 }
 
-.trivia-game-box {
-    background: rgba(11, 12, 16, 0.75);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius-md);
-    padding: 2rem;
-    max-width: 700px;
+.carousel-wrapper {
+    position: relative;
+    max-width: 800px;
     margin: 0 auto;
-    backdrop-filter: blur(10px);
-}
-
-.trivia-question {
-    text-align: center;
-    margin-bottom: 1.8rem;
-}
-
-.trivia-question .label {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    display: block;
-    margin-bottom: 0.5rem;
-}
-
-.filename-display {
-    font-family: var(--font-code);
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: var(--accent-cyan);
-    background: rgba(0, 0, 0, 0.5);
-    padding: 0.8rem 1.5rem;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border-color);
-    display: inline-block;
-    box-shadow: inset 0 0 15px rgba(0,0,0,0.6);
-}
-
-.trivia-options {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.btn-option {
-    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-md);
+    overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 1rem;
-    border-radius: var(--radius-sm);
-    color: #fff;
-    font-size: 1.05rem;
-    font-weight: 600;
-    font-family: var(--font-main);
-    cursor: pointer;
-    transition: var(--transition);
-    text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
 }
 
-.btn-option:hover:not(.disabled) {
-    background: rgba(102, 252, 241, 0.15);
+.carousel-track-container {
+    overflow: hidden;
+    position: relative;
+    background: rgba(11, 12, 16, 0.9);
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    max-height: 450px;
+    display: block;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.carousel-caption {
+    background: rgba(11, 12, 16, 0.95);
+    padding: 1.5rem 2rem;
+    color: #fff;
+    backdrop-filter: blur(5px);
+}
+
+.carousel-caption h3 {
+    color: var(--accent-cyan);
+    font-size: 1.25rem;
+    margin-bottom: 0.4rem;
+    font-weight: 700;
+}
+
+.carousel-caption p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.carousel-control-btn {
+    position: absolute;
+    top: calc(50% - 45px); /* Offset to center on image area */
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 2rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+    backdrop-filter: blur(3px);
+}
+
+.carousel-control-btn:hover {
+    background: var(--accent-cyan);
+    color: #000;
     border-color: var(--accent-cyan);
-    transform: translateY(-2px);
     box-shadow: 0 0 15px var(--accent-cyan-glow);
 }
 
-.btn-option.correct {
-    background: rgba(80, 250, 123, 0.25) !important;
-    border-color: #50fa7b !important;
-    color: #50fa7b !important;
-    box-shadow: 0 0 20px rgba(80, 250, 123, 0.4);
+.carousel-control-btn.prev {
+    left: 1rem;
 }
 
-.btn-option.wrong {
-    background: rgba(255, 85, 85, 0.25) !important;
-    border-color: #ff5555 !important;
-    color: #ff5555 !important;
-    opacity: 0.7;
+.carousel-control-btn.next {
+    right: 1rem;
 }
 
-.btn-option.disabled {
-    cursor: default;
-    pointer-events: none;
-}
-
-.trivia-feedback {
-    text-align: center;
-    min-height: 30px;
-    font-weight: 700;
-    font-size: 1.1rem;
-    margin-bottom: 1.2rem;
-}
-
-.trivia-footer {
+.carousel-indicators {
+    position: absolute;
+    bottom: 8.5rem; /* Above caption height */
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    padding-top: 1.2rem;
+    gap: 0.6rem;
+    z-index: 10;
 }
 
-.score-display {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
 }
 
-.score-display strong {
-    color: var(--accent-gold);
-    font-size: 1.3rem;
+.carousel-dot:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.carousel-dot.active {
+    background: var(--accent-cyan);
+    width: 24px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px var(--accent-cyan-glow);
 }
 
 /* Section Divider */

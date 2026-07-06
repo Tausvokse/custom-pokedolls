@@ -257,29 +257,50 @@
                 </div>
             </div>
 
-            <!-- Interactive Silhouette Guessing Mini-Game -->
-            <div class="trivia-widget-banner">
-                <div class="trivia-header">
-                    <span class="trivia-tag">INTERACTIVE SILHOUETTE SIMULATOR</span>
-                    <h2>🎮 Who's That Pokémon? Guessing Challenge</h2>
-                    <p>Can you guess the mystery Pokémon from its darkened silhouette before the timer runs out?</p>
+            <!-- Who's That Pokémon? Mod Showcase Gallery -->
+            <div class="showcase-carousel-section">
+                <div class="carousel-header">
+                    <span class="carousel-tag">VISUAL GALLERY</span>
+                    <h2>📸 Who's That Pokémon? In-Game Showcase</h2>
+                    <p>Take a look at the custom-rendered anime-inspired silhouette interface and guessing screens in action.</p>
                 </div>
                 
-                <div class="trivia-game-box" id="trivia-game-box">
-                    <div class="trivia-question">
-                        <span class="label">Mystery Silhouette (Difficulty: <span id="wtp-difficulty">Medium</span>)</span>
-                        <div class="silhouette-display" id="wtp-silhouette" style="font-size: 5rem; line-height: 1; filter: brightness(0); transition: all 0.5s ease; cursor: pointer; text-shadow: 0 0 20px var(--accent-cyan-glow);">❓</div>
-                    </div>
-                    <div class="trivia-options" id="wtp-options">
-                        <!-- Options injected by JS -->
-                    </div>
-                    <div class="trivia-feedback" id="wtp-feedback"></div>
-                    <div class="trivia-footer">
-                        <span class="score-display">Leaderboard Points: <strong id="wtp-score">0</strong> | Attempts: <strong id="wtp-attempts">3</strong>/3</span>
-                        <div style="display: flex; gap: 0.8rem;">
-                            <button class="btn btn-outline" id="btn-wtp-hint" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">💡 Hint (-15 pts)</button>
-                            <button class="btn btn-primary" id="btn-wtp-next">Next Round ➔</button>
+                <div class="carousel-wrapper">
+                    <div class="carousel-track-container">
+                        <div class="carousel-track">
+                            <div class="carousel-slide active">
+                                <img src="images/none.png" alt="WTP Silhouette Screen - Mystery Pokémon silhouette with timer and input field">
+                                <div class="carousel-caption">
+                                    <h3>Mysterious Silhouette GUI</h3>
+                                    <p>An interactive, anime-inspired GUI screen displays a dark silhouette with an in-game timer and prompt.</p>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="images/correct.png" alt="WTP Correct Guess - Pokémon revealed in full color with green success indicator">
+                                <div class="carousel-caption">
+                                    <h3>Victory & Reveal Screen</h3>
+                                    <p>A correct guess reveals the Pokémon in full color, triggers audio fanfare, and issues leaderboard score updates!</p>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="images/false.png" alt="WTP Incorrect Guess - Attempt failed with red feedback and attempts counter decrease">
+                                <div class="carousel-caption">
+                                    <h3>Guess Attempt Feedback</h3>
+                                    <p>Incorrect guesses show clean error alerts, deduct points, and track remaining guessing attempts.</p>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                    
+                    <!-- Carousel Navigation Controls -->
+                    <button class="carousel-control-btn prev" id="carousel-prev" aria-label="Previous Slide">‹</button>
+                    <button class="carousel-control-btn next" id="carousel-next" aria-label="Next Slide">›</button>
+                    
+                    <!-- Carousel Indicator Dots -->
+                    <div class="carousel-indicators">
+                        <button class="carousel-dot active" data-slide="0" aria-label="Slide 1"></button>
+                        <button class="carousel-dot" data-slide="1" aria-label="Slide 2"></button>
+                        <button class="carousel-dot" data-slide="2" aria-label="Slide 3"></button>
                     </div>
                 </div>
             </div>
@@ -385,46 +406,134 @@
                     <div class="card-header">
                         <h3>📝 Server Configuration (<code>whosthatpokemon-server.toml</code>)</h3>
                     </div>
-                    <p>When started, the mod generates a clean TOML configuration file allowing full customization of cooldowns, allowed Pokémon lists, fallback item rewards, and rate limiting:</p>
+                    <p>WTP generates a comprehensive, fully documented TOML configuration on first boot. Configure sound effects, client-side sprite caching, hint restrictions, rate limits, and custom rewards:</p>
+                    
                     <div class="code-block-wrapper">
                         <div class="code-header">
-                            <span>serverconfig/whosthatpokemon-server.toml (snippet)</span>
+                            <span>config/whosthatpokemon-server.toml</span>
                             <button class="btn-copy" data-copy="[general]
 cooldown_seconds = 300
 allowed_pokemon = [
-    &quot;pikachu&quot;,
-    &quot;bulbasaur&quot;,
-    &quot;charmander&quot;,
-    &quot;squirtle&quot;
+    &quot;pikachu=Пикачу&quot;,
+    &quot;bulbasaur=Бульбазавр&quot;,
+    &quot;charmander=Чармандер&quot;,
+    &quot;squirtle=Сквиртл&quot;
 ]
-rewards = [&quot;minecraft:diamond;1&quot;, &quot;minecraft:emerald;5&quot;]
+rewards = [
+    &quot;minecraft:diamond;1&quot;,
+    &quot;minecraft:emerald;5&quot;
+]
 reward_points = 50
 penalty_wrong_guess = 10
+penalty_timeout = 10
+penalty_surrender = 10
 loot_table_id = &quot;&quot;
 max_attempts = 3
 session_timeout_seconds = 30
-difficulty = &quot;medium&quot;">Copy</button>
+difficulty = &quot;medium&quot;
+
+[hints]
+enable_hints = false
+hint_cost = 15
+max_hints_per_round = 2
+
+[sounds]
+enable_sounds = true
+sound_volume = 1.0
+
+[advanced]
+leaderboard_save_interval_seconds = 30
+sprite_cache_enabled = true
+max_name_length = 50
+rate_limit_ms = 500">Copy</button>
                         </div>
                         <pre><code>[general]
-# Cooldown time in seconds before a player can play again (default: 300 / 5 min)
+# Cooldown time in seconds before a player can play again after a round finishes.
 cooldown_seconds = 300
 
-# Format: 'internal_name' or 'internal_name=display_name' e.g. 'pikachu'
+# Allowed pokemon list. Format: 'internal_name=localized_name' or just 'internal_name'.
 allowed_pokemon = [
-    "pikachu",
-    "bulbasaur",
-    "charmander",
-    "squirtle"
+    "pikachu=Пикачу",
+    "bulbasaur=Бульбазавр",
+    "charmander=Чармандер",
+    "squirtle=Сквиртл"
 ]
 
-# Fallback rewards table if loot_table_id is not used
-rewards = ["minecraft:diamond;1", "minecraft:emerald;5"]
+# Fallback rewards if loot_table_id is not specified. Format: 'item_id;amount'
+rewards = [
+    "minecraft:diamond;1",
+    "minecraft:emerald;5"
+]
+
 reward_points = 50
 penalty_wrong_guess = 10
-loot_table_id = "" # Optional: e.g. 'minecraft:chests/simple_dungeon'
-max_attempts = 3
-session_timeout_seconds = 30
-difficulty = "medium"</code></pre>
+penalty_timeout = 10
+penalty_surrender = 10
+
+# Minecraft LootTable ID (factoring in player Luck). Falls back to rewards list if empty.
+loot_table_id = ""
+
+max_attempts = 3          # Range: 1 to 10
+session_timeout_seconds = 30  # Range: 10 to 300
+difficulty = "medium"    # 'easy', 'medium', or 'hard'
+
+[hints]
+enable_hints = false      # Enable/disable the in-game hint system
+hint_cost = 15            # Score cost per hint (Range: 0 to 100)
+max_hints_per_round = 2   # Max hints allowed per round (Range: 0 to 5)
+
+[sounds]
+enable_sounds = true      # Custom sound effects when GUI opens or pokemon reveals
+sound_volume = 1.0        # Volume (Range: 0.0 to 1.0)
+
+[advanced]
+leaderboard_save_interval_seconds = 30  # Disk saving interval to prevent TPS lag
+sprite_cache_enabled = true             # Cache downloaded Pokémon textures on client
+max_name_length = 50                    # Max length for guessed name
+rate_limit_ms = 500                     # Networking packet rate-limiting to prevent spam</code></pre>
+                    </div>
+                </article>
+
+                <article class="doc-card">
+                    <div class="card-header">
+                        <h3>🎁 Reward & Score Scaling</h3>
+                    </div>
+                    <p>WTP rewards winners dynamically using the **Score Bonus Mechanic** when utilizing the fallback rewards list. Base reward stack sizes scale upward based on the player's existing leaderboard ranking:</p>
+                    <div class="example-box" style="font-family: var(--font-main); font-size: 0.9rem;">
+                        <strong>Score Bonus Formula:</strong><br>
+                        <code style="display: block; margin: 0.5rem 0; text-align: center; font-size: 1rem; background: rgba(0,0,0,0.4); padding: 0.4rem;">Final Stack = min(64, Base + floor(Player Score / 100))</code>
+                        Guarantees higher stack sizes for trivia champions and server veterans, promoting player retention and persistent engagement!
+                    </div>
+                </article>
+
+                <article class="doc-card">
+                    <div class="card-header">
+                        <h3>🚀 Future Roadmap</h3>
+                    </div>
+                    <ul class="styled-list">
+                        <li><strong>Custom Reward Commands:</strong> Trigger arbitrary server console commands on winning (e.g. <code>give %player% rare_candy</code>, <code>eco give %player%</code>) directly from the server config.</li>
+                        <li><strong>Expanded Languages:</strong> Full localization databases for German, Spanish, French, Portuguese, Chinese, and more.</li>
+                        <li><strong>Visual Leaderboard GUI:</strong> Sleek client-side GUI screen for `/wtp top` featuring player avatars, custom trophies, and rank badges.</li>
+                    </ul>
+                </article>
+
+                <article class="doc-card full-width" style="background: linear-gradient(135deg, rgba(69, 162, 158, 0.1) 0%, rgba(11, 12, 16, 0.8) 100%); border-color: var(--accent-cyan);">
+                    <div class="card-header">
+                        <h3>🛒 Pricing & Licensing Information</h3>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;">
+                        <div>
+                            <h4>Who's That Pokémon? Server License</h4>
+                            <p style="color: var(--text-secondary); margin-top: 0.3rem;">One purchase grants you production <code>.jar</code> files for <strong>both NeoForge and Fabric</strong> on Minecraft 1.21.1!</p>
+                        </div>
+                        <div style="text-align: right; background: rgba(102, 252, 241, 0.05); padding: 1rem 1.8rem; border: 1px solid var(--accent-cyan); border-radius: var(--radius-md); box-shadow: 0 0 15px var(--accent-cyan-glow);">
+                            <span style="font-size: 0.9rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; display: block;">Price</span>
+                            <span style="font-size: 2rem; font-weight: 800; color: #fff;">$10.00 USD</span>
+                            <span style="font-size: 0.8rem; color: var(--accent-cyan); display: block; margin-top: 0.2rem; font-weight: 600;">One-Time Purchase</span>
+                        </div>
+                    </div>
+                    <div class="example-box" style="margin-top: 1.5rem; text-align: center; border-left: none; border-top: 3px solid var(--accent-cyan); border-radius: var(--radius-sm);">
+                        💬 <strong>How to buy:</strong> Send a direct message (DM) on <strong>Discord</strong> to purchase your commercial license and receive instant file access!
                     </div>
                 </article>
             </div>

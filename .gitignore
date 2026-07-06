@@ -12,3 +12,6 @@ pokeblocks/
 *.geo.json
 *.png
 *.jar
+!docs/images/
+!docs/images/*.png
+
