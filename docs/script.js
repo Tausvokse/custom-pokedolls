@@ -61,43 +61,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const wtpRounds = [
         {
             icon: "🐭⚡",
-            name: "Pikachu (Пикачу)",
-            options: ["Pikachu (Пикачу)", "Raichu (Райчу)", "Jolteon (Джолтеон)", "Pichu (Пичу)"],
+            name: "Pikachu",
+            options: ["Pikachu", "Raichu", "Jolteon", "Pichu"],
             answer: 0,
             hint: "P (7) - Electric Mouse Pokemon!"
         },
         {
             icon: "🔥🦎",
-            name: "Charmander (Чармандер)",
-            options: ["Cyndaquil (Синдаквил)", "Charmander (Чармандер)", "Charmeleon (Чармелеон)", "Vulpix (Вульпикс)"],
+            name: "Charmander",
+            options: ["Cyndaquil", "Charmander", "Charmeleon", "Vulpix"],
             answer: 1,
             hint: "C (10) - Has a flame burning on the tip of its tail!"
         },
         {
             icon: "🐢💧",
-            name: "Squirtle (Сквиртл)",
-            options: ["Totodile (Тотодайл)", "Psyduck (Псайдак)", "Squirtle (Сквиртл)", "Blastoise (Бластойз)"],
+            name: "Squirtle",
+            options: ["Totodile", "Psyduck", "Squirtle", "Blastoise"],
             answer: 2,
             hint: "S (8) - Tiny Turtle Pokemon that sprays water!"
         },
         {
             icon: "🐸🌿",
-            name: "Bulbasaur (Бульбазавр)",
-            options: ["Chikorita (Чикорита)", "Bulbasaur (Бульбазавр)", "Oddish (Оддиш)", "Treecko (Трикко)"],
+            name: "Bulbasaur",
+            options: ["Chikorita", "Bulbasaur", "Oddish", "Treecko"],
             answer: 1,
             hint: "B (9) - Has a plant bulb growing on its back!"
         },
         {
             icon: "🐉🔥",
-            name: "Charizard (Чаризард)",
-            options: ["Dragonite (Драгонайт)", "Aerodactyl (Аэродактиль)", "Charizard (Чаризард)", "Salamence (Саламенс)"],
+            name: "Charizard",
+            options: ["Dragonite", "Aerodactyl", "Charizard", "Salamence"],
             answer: 2,
             hint: "C (9) - Breathes intense fire that melts boulders!"
         },
         {
             icon: "👻🌙",
-            name: "Gengar (Генгар)",
-            options: ["Gastly (Гастли)", "Gengar (Генгар)", "Haunter (Хонтер)", "Mewtwo (Мьюту)"],
+            name: "Gengar",
+            options: ["Gastly", "Gengar", "Haunter", "Mewtwo"],
             answer: 1,
             hint: "G (6) - Shadow Pokemon that hides in dark rooms!"
         }

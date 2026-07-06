@@ -303,8 +303,8 @@
                         </div>
                         <div class="feature-item">
                             <div class="feat-icon">🌐</div>
-                            <h4>Multilingual Support</h4>
-                            <p>Accepts standard English names (e.g. <code>pikachu</code>) as well as localized names (e.g. <code>Пикачу</code>, <code>Чармандер</code>) in chat or GUI.</p>
+                            <h4>Flexible Name Recognition</h4>
+                            <p>Accepts standard English Pokémon names (e.g. <code>pikachu</code>, <code>charizard</code>, <code>squirtle</code>) in chat or GUI.</p>
                         </div>
                         <div class="feature-item">
                             <div class="feat-icon">🏆</div>
@@ -392,10 +392,10 @@
                             <button class="btn-copy" data-copy="[general]
 cooldown_seconds = 300
 allowed_pokemon = [
-    &quot;pikachu=Пикачу&quot;,
-    &quot;bulbasaur=Бульбазавр&quot;,
-    &quot;charmander=Чармандер&quot;,
-    &quot;squirtle=Сквиртл&quot;
+    &quot;pikachu&quot;,
+    &quot;bulbasaur&quot;,
+    &quot;charmander&quot;,
+    &quot;squirtle&quot;
 ]
 rewards = [&quot;minecraft:diamond;1&quot;, &quot;minecraft:emerald;5&quot;]
 reward_points = 50
@@ -409,12 +409,12 @@ difficulty = &quot;medium&quot;">Copy</button>
 # Cooldown time in seconds before a player can play again (default: 300 / 5 min)
 cooldown_seconds = 300
 
-# Format: 'internal_name=localized_name' e.g. 'pikachu=Пикачу'
+# Format: 'internal_name' or 'internal_name=display_name' e.g. 'pikachu'
 allowed_pokemon = [
-    "pikachu=Пикачу",
-    "bulbasaur=Бульбазавр",
-    "charmander=Чармандер",
-    "squirtle=Сквиртл"
+    "pikachu",
+    "bulbasaur",
+    "charmander",
+    "squirtle"
 ]
 
 # Fallback rewards table if loot_table_id is not used
