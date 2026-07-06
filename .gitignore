@@ -1,0 +1,9 @@
+.gradle/
+build/
+!build/libs/
+*.log
+.idea/
+.vscode/
+run/
+.gemini/
+*.tmp

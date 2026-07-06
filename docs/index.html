@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Pokedolls & Whos That Pokemon Trivia Mod | Documentation</title>
+    <meta name="description" content="Official documentation and guide for the Minecraft Fabric 1.21.1 Custom Pokedolls Mod and Whos That Pokemon Trivia Mod. Learn how to dynamically load GeckoLib statues, use the Pokedoll Chisel, and configure shiny variants.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-glow bg-glow-1"></div>
+    <div class="background-glow bg-glow-2"></div>
+    <div class="background-glow bg-glow-3"></div>
+
+    <header class="app-header">
+        <div class="header-container">
+            <div class="logo-group">
+                <div class="logo-icon">🔮</div>
+                <div>
+                    <h1>Custom Pokedolls <span class="badge">v1.0.0</span></h1>
+                    <p class="subtitle">Minecraft Fabric 1.21.1 Dynamic 3D Statue Loader</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <a href="https://github.com" target="_blank" rel="noopener" class="btn btn-outline" id="github-link">
+                    <svg class="icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    GitHub Repository
+                </a>
+            </div>
+        </div>
+
+        <nav class="tabs-nav" aria-label="Main Navigation">
+            <button class="tab-btn active" data-tab="tab-custom-pokedolls" id="btn-tab-pokedolls">
+                <span class="tab-icon">📦</span> Custom Pokedolls Mod
+            </button>
+            <button class="tab-btn" data-tab="tab-trivia-mod" id="btn-tab-trivia">
+                <span class="tab-icon">⚡</span> Whos That Pokemon trivia mod
+            </button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <!-- TAB 1: Custom Pokedolls Mod -->
+        <section id="tab-custom-pokedolls" class="tab-pane active" aria-labelledby="btn-tab-pokedolls">
+            <div class="hero-banner">
+                <div class="hero-text">
+                    <h2>Transform Your World with Dynamic 3D Statues</h2>
+                    <p>Load custom Pokedolls directly from your file system using GeckoLib models and textures without ever rebuilding your mod or restarting Minecraft.</p>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <span class="stat-num">1.21.1</span>
+                        <span class="stat-label">Minecraft Fabric</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-num">GeckoLib</span>
+                        <span class="stat-label">3D Engine</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-num">Live</span>
+                        <span class="stat-label">Hot Reloading</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-layout">
+                <article class="doc-card full-width">
+                    <div class="card-header">
+                        <h3>✨ Key Features</h3>
+                    </div>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <div class="feat-icon">📂</div>
+                            <h4>Dynamic Asset Loading</h4>
+                            <p>Load custom 3D <code>.geo.json</code> models and <code>.png</code> textures from an external folder without modifying the mod JAR or restarting.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feat-icon">🏷️</div>
+                            <h4>Automatic Item Naming</h4>
+                            <p>In-game display names are automatically derived and formatted from filename IDs. Underscores become spaces and words are capitalized.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feat-icon">🌟</div>
+                            <h4>Optional Shiny Variants</h4>
+                            <p>Automatically creates shiny item variants in your creative tab when a corresponding <code>_shiny.png</code> texture file is detected.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feat-icon">🔄</div>
+                            <h4>Live In-Game Reloading</h4>
+                            <p>Use `/pokedolls reload` to instantly scan your folders, register new statues, and sync virtual resource packs on the fly.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feat-icon">🛠️</div>
+                            <h4>Interactive GUI Chisel</h4>
+                            <p>Right-click any statue with the Pokedoll Chisel to adjust rotation, scale, position offsets, animation poses, and glowing luminescence.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feat-icon">🛡️</div>
+                            <h4>Crash Protection</h4>
+                            <p>Built-in fallback rendering prevents game crashes or corruption if a model or texture is accidentally deleted while placed.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="doc-card">
+                    <div class="card-header">
+                        <h3>🚀 Installation & Setup</h3>
+                    </div>
+                    <ol class="step-list">
+                        <li>
+                            <strong>Install Dependencies</strong>
+                            <p>Ensure you have <a href="https://fabricmc.net/" target="_blank">Fabric Loader</a> and <a href="https://modrinth.com/mod/fabric-api" target="_blank">Fabric API</a> for Minecraft 1.21.1.</p>
+                        </li>
+                        <li>
+                            <strong>Add GeckoLib Engine</strong>
+                            <p>Download and install <a href="https://modrinth.com/mod/geckolib" target="_blank">GeckoLib 4.6+</a> into your mods directory.</p>
+                        </li>
+                        <li>
+                            <strong>Install Mod JAR</strong>
+                            <p>Place the <code>custom-pokedolls-1.0.0.jar</code> file into your `.minecraft/mods/` directory.</p>
+                        </li>
+                        <li>
+                            <strong>Launch & Generate</strong>
+                            <p>Launch the game once. The mod will automatically generate a directory named <code>custom_pokedolls/</code> in your game root.</p>
+                        </li>
+                    </ol>
+                </article>
+
+                <article class="doc-card">
+                    <div class="card-header">
+                        <h3>📁 Adding Custom Statues</h3>
+                    </div>
+                    <p>Place your GeckoLib assets into the <code>custom_pokedolls/</code> directory inside your game root. You can use subdirectories or place files in the root folder.</p>
+                    
+                    <div class="code-block-wrapper">
+                        <div class="code-header">
+                            <span>Recommended Directory Structure</span>
+                            <button class="btn-copy" data-copy=".minecraft/
+└── custom_pokedolls/
+    ├── geo/
+    │   ├── my_statue.geo.json
+    │   └── charizard_doll.geo.json
+    └── textures/
+        └── block/
+            ├── my_statue.png
+            ├── my_statue_shiny.png
+            └── charizard_doll.png">Copy</button>
+                        </div>
+                        <pre><code>.minecraft/
+└── custom_pokedolls/
+    ├── geo/
+    │   ├── my_statue.geo.json
+    │   └── charizard_doll.geo.json
+    └── textures/
+        └── block/
+            ├── my_statue.png
+            ├── my_statue_shiny.png
+            └── charizard_doll.png</code></pre>
+                    </div>
+
+                    <h4>Naming Conventions & Display Names</h4>
+                    <ul class="styled-list">
+                        <li><strong>Base Models:</strong> Place your <code>.geo.json</code> file in <code>geo/</code> and matching <code>.png</code> texture in <code>textures/block/</code>.</li>
+                        <li><strong>Automatic Formatting:</strong> The mod formats the file ID into a clean title:
+                            <div class="example-box">
+                                <code>my_statue.geo.json</code> ➔ <span class="highlight">"My Statue"</span><br>
+                                <code>charizard_doll.geo.json</code> ➔ <span class="highlight">"Charizard Doll"</span>
+                            </div>
+                        </li>
+                        <li><strong>Shiny Variants:</strong> Add a second texture file with the <code>_shiny.png</code> suffix (e.g. <code>my_statue_shiny.png</code>). The mod registers a Shiny item with the <span class="highlight-gold">"Shiny "</span> prefix!</li>
+                    </ul>
+                </article>
+
+                <article class="doc-card">
+                    <div class="card-header">
+                        <h3>⚡ In-Game Commands</h3>
+                    </div>
+                    <p>Requires Operator (OP) permission level 2 or singleplayer cheat permissions:</p>
+                    
+                    <div class="command-box">
+                        <div class="cmd-title">Reload Command</div>
+                        <div class="code-block-wrapper">
+                            <pre><code>/pokedolls reload</code></pre>
+                            <button class="btn-copy" data-copy="/pokedolls reload">Copy</button>
+                        </div>
+                        <p class="cmd-desc">Alias: <code>/custom_pokedolls reload</code></p>
+                        <ul class="styled-list">
+                            <li>Scans the external <code>custom_pokedolls/</code> directory for new geometry and textures.</li>
+                            <li>Registers new block and item entries dynamically without restarting.</li>
+                            <li>Updates existing model properties and synchronizes the runtime resource pack with all connected multiplayer clients.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="doc-card">
+                    <div class="card-header">
+                        <h3>🔨 Using the Pokedoll Chisel</h3>
+                    </div>
+                    <p>The Pokedoll Chisel is an interactive in-game tool located in the <strong>Custom Pokedolls</strong> creative tab.</p>
+                    <div class="chisel-steps">
+                        <div class="step-badge">1</div>
+                        <p>Place any custom Pokedoll statue block in the world.</p>
+                        <div class="step-badge">2</div>
+                        <p>Hold the <strong>Pokedoll Chisel</strong> in your main hand and <strong>Right-Click</strong> the statue.</p>
+                        <div class="step-badge">3</div>
+                        <p>The <strong>Pokedoll Customization Screen</strong> GUI will open with advanced controls:</p>
+                    </div>
+                    <div class="gui-controls-grid">
+                        <div class="ctrl-item"><strong>Position Offsets:</strong> Fine-tune X, Y, and Z rendering positions.</div>
+                        <div class="ctrl-item"><strong>Rotation Slider:</strong> Smooth 360° rotation slider.</div>
+                        <div class="ctrl-item"><strong>Glowing Effect:</strong> Toggle luminescence (Light Level 15).</div>
+                        <div class="ctrl-item"><strong>Auto-Rotate:</strong> Continuous spinning showcase animation.</div>
+                        <div class="ctrl-item"><strong>Pose Selection:</strong> Switch between GeckoLib animation poses.</div>
+                        <div class="ctrl-item"><strong>Reset Controls:</strong> Instant reset to default scale and rotation.</div>
+                    </div>
+                </article>
+
+                <article class="doc-card full-width">
+                    <div class="card-header">
+                        <h3>⚙️ Technical Details & Compatibility</h3>
+                    </div>
+                    <div class="tech-grid">
+                        <div class="tech-card">
+                            <h4>Virtual Resource Pack</h4>
+                            <p>The mod operates a runtime built-in resource pack (<code>Custom Pokedolls Virtual Pack</code>) that maps the external directory into Minecraft's resource engine under the <code>custom_pokedolls</code> namespace.</p>
+                        </div>
+                        <div class="tech-card">
+                            <h4>Scale Normalization</h4>
+                            <p>Bounding box dimensions are automatically parsed from loaded `.geo.json` files to compute a normalized rendering scale, ensuring statues display proportionally across inventories and worlds.</p>
+                        </div>
+                        <div class="tech-card">
+                            <h4>Multiplayer Synchronization</h4>
+                            <p>When installed on a dedicated server, executing `/pokedolls reload` automatically dispatches network synchronization packets (`ReloadResourcesPayload`) to all connected clients.</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- TAB 2: Whos That Pokemon trivia mod -->
+        <section id="tab-trivia-mod" class="tab-pane" aria-labelledby="btn-tab-trivia">
+            <!-- Interactive Trivia Mini-App Widget -->
+            <div class="trivia-widget-banner">
+                <div class="trivia-header">
+                    <span class="trivia-tag">INTERACTIVE MINI-GAME</span>
+                    <h2>⚡ Who's That Pokemon? Trivia Challenge</h2>
+                    <p>Test your knowledge! Can you guess the statue's formatted name from its raw `.geo.json` filename?</p>
+                </div>
+                
+                <div class="trivia-game-box" id="trivia-game-box">
+                    <div class="trivia-question">
+                        <span class="label">Raw Filename ID:</span>
+                        <div class="filename-display" id="trivia-filename">loading...</div>
+                    </div>
+                    <div class="trivia-options" id="trivia-options">
+                        <!-- Options injected by JS -->
+                    </div>
+                    <div class="trivia-feedback" id="trivia-feedback"></div>
+                    <div class="trivia-footer">
+                        <span class="score-display">Score: <strong id="trivia-score">0</strong> / <span id="trivia-total">0</span></span>
+                        <button class="btn btn-primary" id="btn-next-question">Next Question ➔</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider">
+                <span>📚 Mod Documentation & Integration Guide</span>
+            </div>
+
+            <!-- Complete README documentation duplicated on Tab 2 as requested -->
+            <div class="grid-layout">
+                <article class="doc-card full-width">
+                    <div class="card-header">
+                        <h3>✨ Whos That Pokemon Trivia Mod & Custom Pokedolls Overview</h3>
+                    </div>
+                    <p class="intro-p">This documentation covers the integration and functionality of the <strong>Whos That Pokemon trivia mod</strong> and the underlying <strong>Custom Pokedolls Loader</strong> engine for Minecraft Fabric 1.21.1.</p>
+                    
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <div class="feat-icon">❓</div>
+                            <h4>Trivia Integration</h4>
+                            <p>Use custom loaded statues as interactive trivia challenge blocks and prizes in your custom Pokemon adventures.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feat-icon">📂</div>
+                            <h4>Dynamic Asset Loading</h4>
+                            <p>Load custom 3D `.geo.json` models and `.png` textures directly from your file system without restarting.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feat-icon">🏷️</div>
+                            <h4>Automatic Item Naming</h4>
+                            <p>In-game display names are automatically derived from filename IDs with capitalization and space conversion.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feat-icon">🌟</div>
+                            <h4>Optional Shiny Variants</h4>
+                            <p>Automatically creates shiny item variants in your creative tab when a matching `_shiny.png` texture is detected.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feat-icon">🔄</div>
+                            <h4>Live In-Game Reloading</h4>
+                            <p>Use `/pokedolls reload` to instantly scan your folders, register new statues, and sync resource packs.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feat-icon">🛠️</div>
+                            <h4>Interactive GUI Chisel</h4>
+                            <p>Adjust rotation, scale, position offsets, animation poses, and glowing luminescence with the Pokedoll Chisel.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="doc-card">
+                    <div class="card-header">
+                        <h3>🚀 Installation & Setup</h3>
+                    </div>
+                    <ol class="step-list">
+                        <li>
+                            <strong>Install Dependencies</strong>
+                            <p>Ensure you have <a href="https://fabricmc.net/" target="_blank">Fabric Loader</a> and <a href="https://modrinth.com/mod/fabric-api" target="_blank">Fabric API</a> for Minecraft 1.21.1.</p>
+                        </li>
+                        <li>
+                            <strong>Add GeckoLib Engine</strong>
+                            <p>Download and install <a href="https://modrinth.com/mod/geckolib" target="_blank">GeckoLib 4.6+</a> into your mods directory.</p>
+                        </li>
+                        <li>
+                            <strong>Install Mod JAR</strong>
+                            <p>Place the <code>custom-pokedolls-1.0.0.jar</code> file into your `.minecraft/mods/` directory.</p>
+                        </li>
+                        <li>
+                            <strong>Launch & Generate</strong>
+                            <p>Launch the game once. The mod will automatically generate a directory named <code>custom_pokedolls/</code> in your game root.</p>
+                        </li>
+                    </ol>
+                </article>
+
+                <article class="doc-card">
+                    <div class="card-header">
+                        <h3>📁 Adding Custom Statues</h3>
+                    </div>
+                    <p>Place your GeckoLib assets into the <code>custom_pokedolls/</code> directory inside your game root. You can use subdirectories or place files in the root folder.</p>
+                    
+                    <div class="code-block-wrapper">
+                        <div class="code-header">
+                            <span>Recommended Directory Structure</span>
+                            <button class="btn-copy" data-copy=".minecraft/
+└── custom_pokedolls/
+    ├── geo/
+    │   ├── my_statue.geo.json
+    │   └── charizard_doll.geo.json
+    └── textures/
+        └── block/
+            ├── my_statue.png
+            ├── my_statue_shiny.png
+            └── charizard_doll.png">Copy</button>
+                        </div>
+                        <pre><code>.minecraft/
+└── custom_pokedolls/
+    ├── geo/
+    │   ├── my_statue.geo.json
+    │   └── charizard_doll.geo.json
+    └── textures/
+        └── block/
+            ├── my_statue.png
+            ├── my_statue_shiny.png
+            └── charizard_doll.png</code></pre>
+                    </div>
+
+                    <h4>Naming Conventions & Display Names</h4>
+                    <ul class="styled-list">
+                        <li><strong>Base Models:</strong> Place your <code>.geo.json</code> file in <code>geo/</code> and matching <code>.png</code> texture in <code>textures/block/</code>.</li>
+                        <li><strong>Automatic Formatting:</strong> The mod formats the file ID into a clean title:
+                            <div class="example-box">
+                                <code>my_statue.geo.json</code> ➔ <span class="highlight">"My Statue"</span><br>
+                                <code>charizard_doll.geo.json</code> ➔ <span class="highlight">"Charizard Doll"</span>
+                            </div>
+                        </li>
+                        <li><strong>Shiny Variants:</strong> Add a second texture file with the <code>_shiny.png</code> suffix (e.g. <code>my_statue_shiny.png</code>). The mod registers a Shiny item with the <span class="highlight-gold">"Shiny "</span> prefix!</li>
+                    </ul>
+                </article>
+
+                <article class="doc-card">
+                    <div class="card-header">
+                        <h3>⚡ In-Game Commands</h3>
+                    </div>
+                    <p>Requires Operator (OP) permission level 2 or singleplayer cheat permissions:</p>
+                    
+                    <div class="command-box">
+                        <div class="cmd-title">Reload Command</div>
+                        <div class="code-block-wrapper">
+                            <pre><code>/pokedolls reload</code></pre>
+                            <button class="btn-copy" data-copy="/pokedolls reload">Copy</button>
+                        </div>
+                        <p class="cmd-desc">Alias: <code>/custom_pokedolls reload</code></p>
+                        <ul class="styled-list">
+                            <li>Scans the external <code>custom_pokedolls/</code> directory for new geometry and textures.</li>
+                            <li>Registers new block and item entries dynamically without restarting.</li>
+                            <li>Updates existing model properties and synchronizes the runtime resource pack with all connected multiplayer clients.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="doc-card">
+                    <div class="card-header">
+                        <h3>🔨 Using the Pokedoll Chisel</h3>
+                    </div>
+                    <p>The Pokedoll Chisel is an interactive in-game tool located in the <strong>Custom Pokedolls</strong> creative tab.</p>
+                    <div class="chisel-steps">
+                        <div class="step-badge">1</div>
+                        <p>Place any custom Pokedoll statue block in the world.</p>
+                        <div class="step-badge">2</div>
+                        <p>Hold the <strong>Pokedoll Chisel</strong> in your main hand and <strong>Right-Click</strong> the statue.</p>
+                        <div class="step-badge">3</div>
+                        <p>The <strong>Pokedoll Customization Screen</strong> GUI will open with advanced controls:</p>
+                    </div>
+                    <div class="gui-controls-grid">
+                        <div class="ctrl-item"><strong>Position Offsets:</strong> Fine-tune X, Y, and Z rendering positions.</div>
+                        <div class="ctrl-item"><strong>Rotation Slider:</strong> Smooth 360° rotation slider.</div>
+                        <div class="ctrl-item"><strong>Glowing Effect:</strong> Toggle luminescence (Light Level 15).</div>
+                        <div class="ctrl-item"><strong>Auto-Rotate:</strong> Continuous spinning showcase animation.</div>
+                        <div class="ctrl-item"><strong>Pose Selection:</strong> Switch between GeckoLib animation poses.</div>
+                        <div class="ctrl-item"><strong>Reset Controls:</strong> Instant reset to default scale and rotation.</div>
+                    </div>
+                </article>
+
+                <article class="doc-card full-width">
+                    <div class="card-header">
+                        <h3>⚙️ Technical Details & Compatibility</h3>
+                    </div>
+                    <div class="tech-grid">
+                        <div class="tech-card">
+                            <h4>Virtual Resource Pack</h4>
+                            <p>The mod operates a runtime built-in resource pack (<code>Custom Pokedolls Virtual Pack</code>) that maps the external directory into Minecraft's resource engine under the <code>custom_pokedolls</code> namespace.</p>
+                        </div>
+                        <div class="tech-card">
+                            <h4>Scale Normalization</h4>
+                            <p>Bounding box dimensions are automatically parsed from loaded `.geo.json` files to compute a normalized rendering scale, ensuring statues display proportionally across inventories and worlds.</p>
+                        </div>
+                        <div class="tech-card">
+                            <h4>Multiplayer Synchronization</h4>
+                            <p>When installed on a dedicated server, executing `/pokedolls reload` automatically dispatches network synchronization packets (`ReloadResourcesPayload`) to all connected clients.</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <div class="footer-content">
+            <p>© 2026 Custom Pokedolls & Whos That Pokemon Trivia Mod. Built for Minecraft Fabric 1.21.1.</p>
+            <p class="sub-text">Designed with modern glassmorphism & dynamic UI aesthetics for GitHub Pages.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
