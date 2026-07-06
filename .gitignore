@@ -7,3 +7,8 @@ build/
 run/
 .gemini/
 *.tmp
+custom_pokedolls/
+pokeblocks/
+*.geo.json
+*.png
+*.jar
