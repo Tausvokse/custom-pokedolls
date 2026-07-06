@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Pokedolls & Whos That Pokemon Trivia Mod | Documentation</title>
-    <meta name="description" content="Official documentation and guide for the Minecraft Fabric 1.21.1 Custom Pokedolls Mod and Whos That Pokemon Trivia Mod. Learn how to dynamically load GeckoLib statues, use the Pokedoll Chisel, and configure shiny variants.">
+    <title>Custom Pokedolls & Who's That Pokémon Minigame | Documentation</title>
+    <meta name="description" content="Official documentation for the Minecraft 1.21.1 Custom Pokedolls Mod and Who's That Pokémon Silhouette Guessing Minigame Mod for Cobblemon.">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,12 +21,12 @@
             <div class="logo-group">
                 <div class="logo-icon">🔮</div>
                 <div>
-                    <h1>Custom Pokedolls <span class="badge">v1.0.0</span></h1>
-                    <p class="subtitle">Minecraft Fabric 1.21.1 Dynamic 3D Statue Loader</p>
+                    <h1>Minecraft Mod Hub <span class="badge">v1.1.0</span></h1>
+                    <p class="subtitle">Custom Pokedolls & Who's That Pokémon Minigame</p>
                 </div>
             </div>
             <div class="header-actions">
-                <a href="https://github.com" target="_blank" rel="noopener" class="btn btn-outline" id="github-link">
+                <a href="https://github.com/Tausvokse/custom-pokedolls" target="_blank" rel="noopener" class="btn btn-outline" id="github-link">
                     <svg class="icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                     GitHub Repository
                 </a>
@@ -37,8 +37,8 @@
             <button class="tab-btn active" data-tab="tab-custom-pokedolls" id="btn-tab-pokedolls">
                 <span class="tab-icon">📦</span> Custom Pokedolls Mod
             </button>
-            <button class="tab-btn" data-tab="tab-trivia-mod" id="btn-tab-trivia">
-                <span class="tab-icon">⚡</span> Whos That Pokemon trivia mod
+            <button class="tab-btn" data-tab="tab-wtp-mod" id="btn-tab-wtp">
+                <span class="tab-icon">❓</span> Who's That Pokémon Mod
             </button>
         </nav>
     </header>
@@ -241,208 +241,197 @@
             </div>
         </section>
 
-        <!-- TAB 2: Whos That Pokemon trivia mod -->
-        <section id="tab-trivia-mod" class="tab-pane" aria-labelledby="btn-tab-trivia">
-            <!-- Interactive Trivia Mini-App Widget -->
+        <!-- TAB 2: Who's That Pokémon Mod (Real Documentation from D:\guessthepok) -->
+        <section id="tab-wtp-mod" class="tab-pane" aria-labelledby="btn-tab-wtp">
+            <div class="hero-banner" style="background: linear-gradient(135deg, rgba(31, 40, 51, 0.8) 0%, rgba(69, 162, 158, 0.25) 100%); border-color: var(--accent-blue);">
+                <div class="hero-text">
+                    <h2>Who's That Pokémon? Minigame Mod</h2>
+                    <p>An interactive, anime-inspired silhouette guessing minigame designed for Cobblemon servers on Minecraft 1.21.1 (NeoForge & Fabric).</p>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <span class="stat-num">Cobblemon</span>
+                        <span class="stat-label">v1.5+ Required</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-num">Multi</span>
+                        <span class="stat-label">NeoForge & Fabric</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-num">Loot</span>
+                        <span class="stat-label">Table Rewards</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Silhouette Guessing Mini-Game -->
             <div class="trivia-widget-banner">
                 <div class="trivia-header">
-                    <span class="trivia-tag">INTERACTIVE MINI-GAME</span>
-                    <h2>⚡ Who's That Pokemon? Trivia Challenge</h2>
-                    <p>Test your knowledge! Can you guess the statue's formatted name from its raw `.geo.json` filename?</p>
+                    <span class="trivia-tag">INTERACTIVE SILHOUETTE SIMULATOR</span>
+                    <h2>🎮 Who's That Pokémon? Guessing Challenge</h2>
+                    <p>Can you guess the mystery Pokémon from its darkened silhouette before the timer runs out?</p>
                 </div>
                 
                 <div class="trivia-game-box" id="trivia-game-box">
                     <div class="trivia-question">
-                        <span class="label">Raw Filename ID:</span>
-                        <div class="filename-display" id="trivia-filename">loading...</div>
+                        <span class="label">Mystery Silhouette (Difficulty: <span id="wtp-difficulty">Medium</span>)</span>
+                        <div class="silhouette-display" id="wtp-silhouette" style="font-size: 5rem; line-height: 1; filter: brightness(0); transition: all 0.5s ease; cursor: pointer; text-shadow: 0 0 20px var(--accent-cyan-glow);">❓</div>
                     </div>
-                    <div class="trivia-options" id="trivia-options">
+                    <div class="trivia-options" id="wtp-options">
                         <!-- Options injected by JS -->
                     </div>
-                    <div class="trivia-feedback" id="trivia-feedback"></div>
+                    <div class="trivia-feedback" id="wtp-feedback"></div>
                     <div class="trivia-footer">
-                        <span class="score-display">Score: <strong id="trivia-score">0</strong> / <span id="trivia-total">0</span></span>
-                        <button class="btn btn-primary" id="btn-next-question">Next Question ➔</button>
+                        <span class="score-display">Leaderboard Points: <strong id="wtp-score">0</strong> | Attempts: <strong id="wtp-attempts">3</strong>/3</span>
+                        <div style="display: flex; gap: 0.8rem;">
+                            <button class="btn btn-outline" id="btn-wtp-hint" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">💡 Hint (-15 pts)</button>
+                            <button class="btn btn-primary" id="btn-wtp-next">Next Round ➔</button>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="section-divider">
-                <span>📚 Mod Documentation & Integration Guide</span>
+                <span>📖 Official Server & Gameplay Documentation</span>
             </div>
 
-            <!-- Complete README documentation duplicated on Tab 2 as requested -->
             <div class="grid-layout">
                 <article class="doc-card full-width">
                     <div class="card-header">
-                        <h3>✨ Whos That Pokemon Trivia Mod & Custom Pokedolls Overview</h3>
+                        <h3>🎮 Gameplay & Mechanics Overview</h3>
                     </div>
-                    <p class="intro-p">This documentation covers the integration and functionality of the <strong>Whos That Pokemon trivia mod</strong> and the underlying <strong>Custom Pokedolls Loader</strong> engine for Minecraft Fabric 1.21.1.</p>
+                    <p class="intro-p"><strong>Who's That Pokémon? (WTP)</strong> allows players to trigger interactive guessing sessions where they are presented with a mysterious Pokémon silhouette in a custom GUI screen. Guessing correctly within the time limit awards leaderboard points and configurable items or custom loot table drops.</p>
                     
                     <div class="features-grid">
                         <div class="feature-item">
-                            <div class="feat-icon">❓</div>
-                            <h4>Trivia Integration</h4>
-                            <p>Use custom loaded statues as interactive trivia challenge blocks and prizes in your custom Pokemon adventures.</p>
+                            <div class="feat-icon">🌑</div>
+                            <h4>Silhouette GUI Screen</h4>
+                            <p>A custom anime-inspired GUI screen opens displaying a darkened silhouette of a random Pokémon from your configured list.</p>
                         </div>
                         <div class="feature-item">
-                            <div class="feat-icon">📂</div>
-                            <h4>Dynamic Asset Loading</h4>
-                            <p>Load custom 3D `.geo.json` models and `.png` textures directly from your file system without restarting.</p>
+                            <div class="feat-icon">🌐</div>
+                            <h4>Multilingual Support</h4>
+                            <p>Accepts standard English names (e.g. <code>pikachu</code>) as well as localized names (e.g. <code>Пикачу</code>, <code>Чармандер</code>) in chat or GUI.</p>
                         </div>
                         <div class="feature-item">
-                            <div class="feat-icon">🏷️</div>
-                            <h4>Automatic Item Naming</h4>
-                            <p>In-game display names are automatically derived from filename IDs with capitalization and space conversion.</p>
+                            <div class="feat-icon">🏆</div>
+                            <h4>Leaderboard System</h4>
+                            <p>Tracks player scores persistently in <code>wtp_leaderboard.json</code>. View server top champions anytime using <code>/wtp top</code>.</p>
                         </div>
                         <div class="feature-item">
-                            <div class="feat-icon">🌟</div>
-                            <h4>Optional Shiny Variants</h4>
-                            <p>Automatically creates shiny item variants in your creative tab when a matching `_shiny.png` texture is detected.</p>
+                            <div class="feat-icon">🎁</div>
+                            <h4>Loot Table Rewards</h4>
+                            <p>Rewards winners via vanilla/modpack loot tables (factoring in player <strong>Luck</strong>) or fallback item lists with score bonus scaling!</p>
                         </div>
                         <div class="feature-item">
-                            <div class="feat-icon">🔄</div>
-                            <h4>Live In-Game Reloading</h4>
-                            <p>Use `/pokedolls reload` to instantly scan your folders, register new statues, and sync resource packs.</p>
+                            <div class="feat-icon">⏳</div>
+                            <h4>Cooldowns & Penalties</h4>
+                            <p>Includes personal cooldowns (default: 300s), attempts limits (default: 3), and score deductions for timeouts or wrong guesses.</p>
                         </div>
                         <div class="feature-item">
-                            <div class="feat-icon">🛠️</div>
-                            <h4>Interactive GUI Chisel</h4>
-                            <p>Adjust rotation, scale, position offsets, animation poses, and glowing luminescence with the Pokedoll Chisel.</p>
+                            <div class="feat-icon">💡</div>
+                            <h4>Hint System</h4>
+                            <p>Optional hint mechanism reveals the first letter and total character length (e.g. <code>P (7)</code>) for a minor score deduction.</p>
                         </div>
                     </div>
                 </article>
 
                 <article class="doc-card">
                     <div class="card-header">
-                        <h3>🚀 Installation & Setup</h3>
+                        <h3>💬 Complete Command Reference</h3>
                     </div>
-                    <ol class="step-list">
-                        <li>
-                            <strong>Install Dependencies</strong>
-                            <p>Ensure you have <a href="https://fabricmc.net/" target="_blank">Fabric Loader</a> and <a href="https://modrinth.com/mod/fabric-api" target="_blank">Fabric API</a> for Minecraft 1.21.1.</p>
-                        </li>
-                        <li>
-                            <strong>Add GeckoLib Engine</strong>
-                            <p>Download and install <a href="https://modrinth.com/mod/geckolib" target="_blank">GeckoLib 4.6+</a> into your mods directory.</p>
-                        </li>
-                        <li>
-                            <strong>Install Mod JAR</strong>
-                            <p>Place the <code>custom-pokedolls-1.0.0.jar</code> file into your `.minecraft/mods/` directory.</p>
-                        </li>
-                        <li>
-                            <strong>Launch & Generate</strong>
-                            <p>Launch the game once. The mod will automatically generate a directory named <code>custom_pokedolls/</code> in your game root.</p>
-                        </li>
-                    </ol>
+                    <p>All commands use the root <code>/wtp</code> prefix. Admin commands require OP level 2+ or LuckPerms permissions:</p>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.9rem;">
+                        <thead>
+                            <tr style="border-bottom: 1px solid var(--border-color); text-align: left; color: var(--accent-cyan);">
+                                <th style="padding: 0.6rem;">Command</th>
+                                <th style="padding: 0.6rem;">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <td style="padding: 0.6rem; font-family: var(--font-code);"><code>/wtp</code> (or <code>/wtp play</code>)</td>
+                                <td style="padding: 0.6rem; color: var(--text-secondary);">Opens the interactive Who's That Pokémon silhouette GUI screen.</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <td style="padding: 0.6rem; font-family: var(--font-code);"><code>/wtp top</code></td>
+                                <td style="padding: 0.6rem; color: var(--text-secondary);">Displays the Top 10 leaderboard with ranks, names, and scores.</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <td style="padding: 0.6rem; font-family: var(--font-code);"><code>/wtp reload</code></td>
+                                <td style="padding: 0.6rem; color: var(--text-secondary);">Reloads configuration file and verifies server status (OP 2+).</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.6rem; font-family: var(--font-code);"><code>/wtp reset [player]</code></td>
+                                <td style="padding: 0.6rem; color: var(--text-secondary);">Resets personal or target guessing cooldown immediately (OP 2+).</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </article>
 
                 <article class="doc-card">
                     <div class="card-header">
-                        <h3>📁 Adding Custom Statues</h3>
+                        <h3>⚙️ Difficulty & Scoring</h3>
                     </div>
-                    <p>Place your GeckoLib assets into the <code>custom_pokedolls/</code> directory inside your game root. You can use subdirectories or place files in the root folder.</p>
-                    
-                    <div class="code-block-wrapper">
-                        <div class="code-header">
-                            <span>Recommended Directory Structure</span>
-                            <button class="btn-copy" data-copy=".minecraft/
-└── custom_pokedolls/
-    ├── geo/
-    │   ├── my_statue.geo.json
-    │   └── charizard_doll.geo.json
-    └── textures/
-        └── block/
-            ├── my_statue.png
-            ├── my_statue_shiny.png
-            └── charizard_doll.png">Copy</button>
-                        </div>
-                        <pre><code>.minecraft/
-└── custom_pokedolls/
-    ├── geo/
-    │   ├── my_statue.geo.json
-    │   └── charizard_doll.geo.json
-    └── textures/
-        └── block/
-            ├── my_statue.png
-            ├── my_statue_shiny.png
-            └── charizard_doll.png</code></pre>
-                    </div>
-
-                    <h4>Naming Conventions & Display Names</h4>
+                    <p>Configure dynamic difficulty tiers and leaderboard score mechanics in <code>whosthatpokemon-server.toml</code>:</p>
                     <ul class="styled-list">
-                        <li><strong>Base Models:</strong> Place your <code>.geo.json</code> file in <code>geo/</code> and matching <code>.png</code> texture in <code>textures/block/</code>.</li>
-                        <li><strong>Automatic Formatting:</strong> The mod formats the file ID into a clean title:
-                            <div class="example-box">
-                                <code>my_statue.geo.json</code> ➔ <span class="highlight">"My Statue"</span><br>
-                                <code>charizard_doll.geo.json</code> ➔ <span class="highlight">"Charizard Doll"</span>
+                        <li><strong>Easy Tier:</strong> Silhouette has higher transparency and players get <span class="highlight">+15 extra seconds</span> on the timer.</li>
+                        <li><strong>Medium Tier:</strong> Standard black silhouette rendering and default 30-second timer.</li>
+                        <li><strong>Hard Tier:</strong> Zoomed-in/cropped silhouette to challenge veterans, with <span class="highlight-gold">-10 seconds</span> less time!</li>
+                        <li><strong>Scoring Formulas:</strong>
+                            <div class="example-box" style="font-size: 0.85rem;">
+                                Correct Guess: <span class="highlight">+50 Points</span> & Reward Drops<br>
+                                Wrong Guess / Timeout: <span style="color: #ff5555;">-10 Points</span><br>
+                                Taking a Hint: <span style="color: #ffaa00;">-15 Points</span> (Reveals Letter & Length)
                             </div>
                         </li>
-                        <li><strong>Shiny Variants:</strong> Add a second texture file with the <code>_shiny.png</code> suffix (e.g. <code>my_statue_shiny.png</code>). The mod registers a Shiny item with the <span class="highlight-gold">"Shiny "</span> prefix!</li>
                     </ul>
-                </article>
-
-                <article class="doc-card">
-                    <div class="card-header">
-                        <h3>⚡ In-Game Commands</h3>
-                    </div>
-                    <p>Requires Operator (OP) permission level 2 or singleplayer cheat permissions:</p>
-                    
-                    <div class="command-box">
-                        <div class="cmd-title">Reload Command</div>
-                        <div class="code-block-wrapper">
-                            <pre><code>/pokedolls reload</code></pre>
-                            <button class="btn-copy" data-copy="/pokedolls reload">Copy</button>
-                        </div>
-                        <p class="cmd-desc">Alias: <code>/custom_pokedolls reload</code></p>
-                        <ul class="styled-list">
-                            <li>Scans the external <code>custom_pokedolls/</code> directory for new geometry and textures.</li>
-                            <li>Registers new block and item entries dynamically without restarting.</li>
-                            <li>Updates existing model properties and synchronizes the runtime resource pack with all connected multiplayer clients.</li>
-                        </ul>
-                    </div>
-                </article>
-
-                <article class="doc-card">
-                    <div class="card-header">
-                        <h3>🔨 Using the Pokedoll Chisel</h3>
-                    </div>
-                    <p>The Pokedoll Chisel is an interactive in-game tool located in the <strong>Custom Pokedolls</strong> creative tab.</p>
-                    <div class="chisel-steps">
-                        <div class="step-badge">1</div>
-                        <p>Place any custom Pokedoll statue block in the world.</p>
-                        <div class="step-badge">2</div>
-                        <p>Hold the <strong>Pokedoll Chisel</strong> in your main hand and <strong>Right-Click</strong> the statue.</p>
-                        <div class="step-badge">3</div>
-                        <p>The <strong>Pokedoll Customization Screen</strong> GUI will open with advanced controls:</p>
-                    </div>
-                    <div class="gui-controls-grid">
-                        <div class="ctrl-item"><strong>Position Offsets:</strong> Fine-tune X, Y, and Z rendering positions.</div>
-                        <div class="ctrl-item"><strong>Rotation Slider:</strong> Smooth 360° rotation slider.</div>
-                        <div class="ctrl-item"><strong>Glowing Effect:</strong> Toggle luminescence (Light Level 15).</div>
-                        <div class="ctrl-item"><strong>Auto-Rotate:</strong> Continuous spinning showcase animation.</div>
-                        <div class="ctrl-item"><strong>Pose Selection:</strong> Switch between GeckoLib animation poses.</div>
-                        <div class="ctrl-item"><strong>Reset Controls:</strong> Instant reset to default scale and rotation.</div>
-                    </div>
                 </article>
 
                 <article class="doc-card full-width">
                     <div class="card-header">
-                        <h3>⚙️ Technical Details & Compatibility</h3>
+                        <h3>📝 Server Configuration (<code>whosthatpokemon-server.toml</code>)</h3>
                     </div>
-                    <div class="tech-grid">
-                        <div class="tech-card">
-                            <h4>Virtual Resource Pack</h4>
-                            <p>The mod operates a runtime built-in resource pack (<code>Custom Pokedolls Virtual Pack</code>) that maps the external directory into Minecraft's resource engine under the <code>custom_pokedolls</code> namespace.</p>
+                    <p>When started, the mod generates a clean TOML configuration file allowing full customization of cooldowns, allowed Pokémon lists, fallback item rewards, and rate limiting:</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header">
+                            <span>serverconfig/whosthatpokemon-server.toml (snippet)</span>
+                            <button class="btn-copy" data-copy="[general]
+cooldown_seconds = 300
+allowed_pokemon = [
+    &quot;pikachu=Пикачу&quot;,
+    &quot;bulbasaur=Бульбазавр&quot;,
+    &quot;charmander=Чармандер&quot;,
+    &quot;squirtle=Сквиртл&quot;
+]
+rewards = [&quot;minecraft:diamond;1&quot;, &quot;minecraft:emerald;5&quot;]
+reward_points = 50
+penalty_wrong_guess = 10
+loot_table_id = &quot;&quot;
+max_attempts = 3
+session_timeout_seconds = 30
+difficulty = &quot;medium&quot;">Copy</button>
                         </div>
-                        <div class="tech-card">
-                            <h4>Scale Normalization</h4>
-                            <p>Bounding box dimensions are automatically parsed from loaded `.geo.json` files to compute a normalized rendering scale, ensuring statues display proportionally across inventories and worlds.</p>
-                        </div>
-                        <div class="tech-card">
-                            <h4>Multiplayer Synchronization</h4>
-                            <p>When installed on a dedicated server, executing `/pokedolls reload` automatically dispatches network synchronization packets (`ReloadResourcesPayload`) to all connected clients.</p>
-                        </div>
+                        <pre><code>[general]
+# Cooldown time in seconds before a player can play again (default: 300 / 5 min)
+cooldown_seconds = 300
+
+# Format: 'internal_name=localized_name' e.g. 'pikachu=Пикачу'
+allowed_pokemon = [
+    "pikachu=Пикачу",
+    "bulbasaur=Бульбазавр",
+    "charmander=Чармандер",
+    "squirtle=Сквиртл"
+]
+
+# Fallback rewards table if loot_table_id is not used
+rewards = ["minecraft:diamond;1", "minecraft:emerald;5"]
+reward_points = 50
+penalty_wrong_guess = 10
+loot_table_id = "" # Optional: e.g. 'minecraft:chests/simple_dungeon'
+max_attempts = 3
+session_timeout_seconds = 30
+difficulty = "medium"</code></pre>
                     </div>
                 </article>
             </div>
@@ -451,8 +440,8 @@
 
     <footer class="app-footer">
         <div class="footer-content">
-            <p>© 2026 Custom Pokedolls & Whos That Pokemon Trivia Mod. Built for Minecraft Fabric 1.21.1.</p>
-            <p class="sub-text">Designed with modern glassmorphism & dynamic UI aesthetics for GitHub Pages.</p>
+            <p>© 2026 Minecraft Mod Hub. Built for Minecraft Fabric & NeoForge 1.21.1.</p>
+            <p class="sub-text">Featuring Custom Pokedolls & Who's That Pokémon (Cobblemon Integration).</p>
         </div>
     </footer>
 

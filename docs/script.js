@@ -57,74 +57,83 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 3. INTERACTIVE "WHO'S THAT POKEMON?" TRIVIA GAME (TAB 2) ---
-    const triviaQuestions = [
+    // --- 3. INTERACTIVE "WHO'S THAT POKEMON?" SILHOUETTE GAME (TAB 2) ---
+    const wtpRounds = [
         {
-            filename: "tyrunt_pokedoll.geo.json",
-            options: ["Tyrunt Pokedoll", "tyrunt_pokedoll", "Shiny Tyrunt Pokedoll", "Tyrunt Statue"],
+            icon: "🐭⚡",
+            name: "Pikachu (Пикачу)",
+            options: ["Pikachu (Пикачу)", "Raichu (Райчу)", "Jolteon (Джолтеон)", "Pichu (Пичу)"],
             answer: 0,
-            hint: "Underscores become spaces and each word is capitalized automatically!"
+            hint: "P (7) - Electric Mouse Pokemon!"
         },
         {
-            filename: "charizard_doll_shiny.png",
-            options: ["Charizard Doll Shiny", "charizard_doll", "Shiny Charizard Doll", "Mega Charizard Statue"],
-            answer: 2,
-            hint: "When a _shiny.png texture is detected, the game prepends the 'Shiny ' prefix!"
-        },
-        {
-            filename: "my_cool_statue.geo.json",
-            options: ["my cool statue", "My_cool_statue", "My Cool Statue", "Cool Statue Pokedoll"],
-            answer: 2,
-            hint: "Every single word is capitalized, and underscores are stripped."
-        },
-        {
-            filename: "ancient_fossil_statue.geo.json",
-            options: ["Ancient Fossil", "Ancient fossil statue", "ancient_fossil_statue", "Ancient Fossil Statue"],
-            answer: 3,
-            hint: "All three words begin with capital letters in the formatted display name."
-        },
-        {
-            filename: "mewtwo_pokedoll_shiny.png",
-            options: ["Mewtwo Pokedoll", "Shiny Mewtwo Pokedoll", "Mewtwo Shiny", "Shiny Mew Statue"],
+            icon: "🔥🦎",
+            name: "Charmander (Чармандер)",
+            options: ["Cyndaquil (Синдаквил)", "Charmander (Чармандер)", "Charmeleon (Чармелеон)", "Vulpix (Вульпикс)"],
             answer: 1,
-            hint: "Notice the _shiny suffix at the end! It gets the shiny prefix."
+            hint: "C (10) - Has a flame burning on the tip of its tail!"
         },
         {
-            filename: "pikachu_doll.geo.json",
-            options: ["Pikachu Doll", "Pikachu_doll", "Pika Statue", "Shiny Pikachu Doll"],
-            answer: 0,
-            hint: "Clean standard base model name without any shiny prefix."
+            icon: "🐢💧",
+            name: "Squirtle (Сквиртл)",
+            options: ["Totodile (Тотодайл)", "Psyduck (Псайдак)", "Squirtle (Сквиртл)", "Blastoise (Бластойз)"],
+            answer: 2,
+            hint: "S (8) - Tiny Turtle Pokemon that sprays water!"
+        },
+        {
+            icon: "🐸🌿",
+            name: "Bulbasaur (Бульбазавр)",
+            options: ["Chikorita (Чикорита)", "Bulbasaur (Бульбазавр)", "Oddish (Оддиш)", "Treecko (Трикко)"],
+            answer: 1,
+            hint: "B (9) - Has a plant bulb growing on its back!"
+        },
+        {
+            icon: "🐉🔥",
+            name: "Charizard (Чаризард)",
+            options: ["Dragonite (Драгонайт)", "Aerodactyl (Аэродактиль)", "Charizard (Чаризард)", "Salamence (Саламенс)"],
+            answer: 2,
+            hint: "C (9) - Breathes intense fire that melts boulders!"
+        },
+        {
+            icon: "👻🌙",
+            name: "Gengar (Генгар)",
+            options: ["Gastly (Гастли)", "Gengar (Генгар)", "Haunter (Хонтер)", "Mewtwo (Мьюту)"],
+            answer: 1,
+            hint: "G (6) - Shadow Pokemon that hides in dark rooms!"
         }
     ];
 
-    let currentQIndex = 0;
+    let currentRoundIdx = 0;
     let score = 0;
-    let hasAnswered = false;
+    let attempts = 3;
+    let roundActive = true;
 
-    const filenameEl = document.getElementById('trivia-filename');
-    const optionsEl = document.getElementById('trivia-options');
-    const feedbackEl = document.getElementById('trivia-feedback');
-    const scoreEl = document.getElementById('trivia-score');
-    const totalEl = document.getElementById('trivia-total');
-    const nextBtn = document.getElementById('btn-next-question');
+    const silhouetteEl = document.getElementById('wtp-silhouette');
+    const optionsEl = document.getElementById('wtp-options');
+    const feedbackEl = document.getElementById('wtp-feedback');
+    const scoreEl = document.getElementById('wtp-score');
+    const attemptsEl = document.getElementById('wtp-attempts');
+    const nextBtn = document.getElementById('btn-wtp-next');
+    const hintBtn = document.getElementById('btn-wtp-hint');
 
-    if (totalEl) totalEl.textContent = triviaQuestions.length;
-
-    function loadQuestion() {
-        hasAnswered = false;
-        const q = triviaQuestions[currentQIndex];
+    function loadRound() {
+        roundActive = true;
+        attempts = 3;
+        const q = wtpRounds[currentRoundIdx];
         
-        if (filenameEl) {
-            filenameEl.style.transform = 'scale(0.9)';
+        if (silhouetteEl) {
+            silhouetteEl.style.filter = 'brightness(0) drop-shadow(0 0 10px rgba(102, 252, 241, 0.4))';
+            silhouetteEl.style.transform = 'scale(0.85)';
             setTimeout(() => {
-                filenameEl.textContent = q.filename;
-                filenameEl.style.transform = 'scale(1)';
+                silhouetteEl.textContent = q.icon;
+                silhouetteEl.style.transform = 'scale(1)';
             }, 150);
         }
 
+        if (attemptsEl) attemptsEl.textContent = attempts;
         if (feedbackEl) {
-            feedbackEl.textContent = '';
-            feedbackEl.style.color = '';
+            feedbackEl.textContent = 'Guesser Ready! Select the matching Pokemon below.';
+            feedbackEl.style.color = 'var(--text-secondary)';
         }
 
         if (optionsEl) {
@@ -133,56 +142,86 @@ document.addEventListener('DOMContentLoaded', () => {
                 const btn = document.createElement('button');
                 btn.className = 'btn-option';
                 btn.textContent = optText;
-                btn.addEventListener('click', () => handleAnswer(idx, btn));
+                btn.addEventListener('click', () => handleGuess(idx, btn));
                 optionsEl.appendChild(btn);
             });
         }
     }
 
-    function handleAnswer(selectedIndex, clickedBtn) {
-        if (hasAnswered) return;
-        hasAnswered = true;
+    function revealPokemon() {
+        if (silhouetteEl) {
+            silhouetteEl.style.filter = 'brightness(1) drop-shadow(0 0 25px rgba(255, 215, 0, 0.8))';
+            silhouetteEl.style.transform = 'scale(1.15) rotate(-5deg)';
+        }
+    }
 
-        const q = triviaQuestions[currentQIndex];
-        const allOptionBtns = optionsEl.querySelectorAll('.btn-option');
-
-        allOptionBtns.forEach((btn, idx) => {
-            btn.classList.add('disabled');
-            if (idx === q.answer) {
-                btn.classList.add('correct');
-            }
-        });
+    function handleGuess(selectedIndex, clickedBtn) {
+        if (!roundActive) return;
+        const q = wtpRounds[currentRoundIdx];
 
         if (selectedIndex === q.answer) {
-            score++;
+            roundActive = false;
+            score += 50;
             if (scoreEl) scoreEl.textContent = score;
+            revealPokemon();
+            
+            clickedBtn.classList.add('correct');
+            const allBtns = optionsEl.querySelectorAll('.btn-option');
+            allBtns.forEach(b => b.classList.add('disabled'));
+
             if (feedbackEl) {
-                feedbackEl.textContent = "🎉 Correct! " + q.hint;
+                feedbackEl.textContent = "🎉 Correct! It's " + q.name + "! (+50 Points Awarded)";
                 feedbackEl.style.color = "#50fa7b";
             }
         } else {
-            clickedBtn.classList.add('wrong');
-            if (feedbackEl) {
-                feedbackEl.textContent = "❌ Incorrect! Correct answer was: \"" + q.options[q.answer] + "\". " + q.hint;
-                feedbackEl.style.color = "#ff5555";
+            attempts--;
+            if (attemptsEl) attemptsEl.textContent = attempts;
+            clickedBtn.classList.add('wrong', 'disabled');
+            score = Math.max(0, score - 10);
+            if (scoreEl) scoreEl.textContent = score;
+
+            if (attempts <= 0) {
+                roundActive = false;
+                revealPokemon();
+                const allBtns = optionsEl.querySelectorAll('.btn-option');
+                allBtns.forEach((b, idx) => {
+                    b.classList.add('disabled');
+                    if (idx === q.answer) b.classList.add('correct');
+                });
+                if (feedbackEl) {
+                    feedbackEl.textContent = "💥 Out of attempts! It was " + q.name + "! (-10 Points)";
+                    feedbackEl.style.color = "#ff5555";
+                }
+            } else {
+                if (feedbackEl) {
+                    feedbackEl.textContent = "❌ Incorrect guess! " + attempts + " attempts remaining (-10 Points).";
+                    feedbackEl.style.color = "#ffaa00";
+                }
             }
         }
     }
 
-    if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            currentQIndex = (currentQIndex + 1) % triviaQuestions.length;
-            if (currentQIndex === 0 && hasAnswered) {
-                // Reset quiz if completed
-                score = 0;
-                if (scoreEl) scoreEl.textContent = score;
+    if (hintBtn) {
+        hintBtn.addEventListener('click', () => {
+            if (!roundActive) return;
+            const q = wtpRounds[currentRoundIdx];
+            score = Math.max(0, score - 15);
+            if (scoreEl) scoreEl.textContent = score;
+            if (feedbackEl) {
+                feedbackEl.textContent = "💡 Hint revealed (-15 pts): " + q.hint;
+                feedbackEl.style.color = "var(--accent-cyan)";
             }
-            loadQuestion();
         });
     }
 
-    // Initialize trivia on startup
-    if (filenameEl && optionsEl) {
-        loadQuestion();
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            currentRoundIdx = (currentRoundIdx + 1) % wtpRounds.length;
+            loadRound();
+        });
+    }
+
+    if (silhouetteEl && optionsEl) {
+        loadRound();
     }
 });
