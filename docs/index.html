@@ -126,6 +126,27 @@
 
                 <article class="doc-card">
                     <div class="card-header">
+                        <h3>🌐 Dedicated Server & Multiplayer Setup</h3>
+                    </div>
+                    <p>The Custom Pokedolls mod is fully optimized for dedicated multiplayer servers (Fabric 1.21.1) with clean separation of client renderers and server-side logic.</p>
+                    <ol class="step-list">
+                        <li>
+                            <strong>Server Directory Setup</strong>
+                            <p>Place your custom assets (<code>geo</code> and <code>textures</code>) inside a <code>custom_pokedolls/</code> folder in the server root directory. The server uses these files to register blocks/items and handle hitboxes.</p>
+                        </li>
+                        <li>
+                            <strong>Client Directory Setup</strong>
+                            <p>All players connecting to the server must also place the matching <code>custom_pokedolls/</code> folder in their own Minecraft client directory so their client can visually render the 3D models and textures.</p>
+                        </li>
+                        <li>
+                            <strong>Live Multiplayer Hot-Reloading</strong>
+                            <p>When you add new statues while the server is running, type <code>/pokedolls reload</code> in server chat or console. The server dynamically registers the new statues and sends a sync packet to all online players—new items immediately render in creative tabs and player hands without restarting the game!</p>
+                        </li>
+                    </ol>
+                </article>
+
+                <article class="doc-card">
+                    <div class="card-header">
                         <h3>📁 Adding Custom Statues</h3>
                     </div>
                     <p>Place your GeckoLib assets into the <code>custom_pokedolls/</code> directory inside your game root. You can use subdirectories or place files in the root folder.</p>
