@@ -149,44 +149,42 @@
                     <div class="card-header">
                         <h3>📁 Adding Custom Statues</h3>
                     </div>
-                    <p>Place your GeckoLib assets into the <code>custom_pokedolls/</code> directory inside your game root. You can use subdirectories or place files in the root folder.</p>
+                    <p>Place your GeckoLib assets into the <code>custom_pokedolls/</code> directory inside your game root (or server root). Models go in <code>geo/</code> and textures go in <code>textures/</code>.</p>
                     
                     <div class="code-block-wrapper">
                         <div class="code-header">
-                            <span>Recommended Directory Structure</span>
+                            <span>Directory Structure</span>
                             <button class="btn-copy" data-copy=".minecraft/
 └── custom_pokedolls/
     ├── geo/
-    │   ├── my_statue.geo.json
-    │   └── charizard_doll.geo.json
+    │   ├── aerodactyl.geo.json
+    │   └── carracosta.geo.json
     └── textures/
-        └── block/
-            ├── my_statue.png
-            ├── my_statue_shiny.png
-            └── charizard_doll.png">Copy</button>
+        ├── aerodactyl.png
+        ├── aerodactyl_shiny.png
+        └── carracosta.png">Copy</button>
                         </div>
                         <pre><code>.minecraft/
 └── custom_pokedolls/
     ├── geo/
-    │   ├── my_statue.geo.json
-    │   └── charizard_doll.geo.json
+    │   ├── aerodactyl.geo.json
+    │   └── carracosta.geo.json
     └── textures/
-        └── block/
-            ├── my_statue.png
-            ├── my_statue_shiny.png
-            └── charizard_doll.png</code></pre>
+        ├── aerodactyl.png
+        ├── aerodactyl_shiny.png
+        └── carracosta.png</code></pre>
                     </div>
 
                     <h4>Naming Conventions & Display Names</h4>
                     <ul class="styled-list">
-                        <li><strong>Base Models:</strong> Place your <code>.geo.json</code> file in <code>geo/</code> and matching <code>.png</code> texture in <code>textures/block/</code>.</li>
+                        <li><strong>Base Models:</strong> Place your <code>.geo.json</code> file in <code>geo/</code> and matching <code>.png</code> texture directly in <code>textures/</code>.</li>
                         <li><strong>Automatic Formatting:</strong> The mod formats the file ID into a clean title:
                             <div class="example-box">
-                                <code>my_statue.geo.json</code> ➔ <span class="highlight">"My Statue"</span><br>
-                                <code>charizard_doll.geo.json</code> ➔ <span class="highlight">"Charizard Doll"</span>
+                                <code>aerodactyl.geo.json</code> ➔ <span class="highlight">"Aerodactyl"</span><br>
+                                <code>carracosta_doll.geo.json</code> ➔ <span class="highlight">"Carracosta Doll"</span>
                             </div>
                         </li>
-                        <li><strong>Shiny Variants:</strong> Add a second texture file with the <code>_shiny.png</code> suffix (e.g. <code>my_statue_shiny.png</code>). The mod registers a Shiny item with the <span class="highlight-gold">"Shiny "</span> prefix!</li>
+                        <li><strong>Shiny Variants:</strong> Add a second texture file with the <code>_shiny.png</code> suffix (e.g. <code>aerodactyl_shiny.png</code>). The mod automatically registers a Shiny variant item with the <span class="highlight-gold">"Shiny "</span> prefix!</li>
                     </ul>
                 </article>
 
