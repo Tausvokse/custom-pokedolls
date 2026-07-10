@@ -12,12 +12,12 @@ Players can right-click any placed statue with the **Pokedoll Chisel** to custom
 ---
 
 ### 🔥 **VERIFIED CORE FEATURES**
-- 📂 **Dynamic Asset Loading:** Place your custom 3D `.geo.json` models and `.png` textures directly into `.minecraft/custom_pokedolls/`. No restarts required!
+- 📂 **Dynamic Asset Loading & Strict Validation:** Place your custom 3D `.geo.json` models and `.png` textures into `.minecraft/custom_pokedolls/`. Both the model `.geo.json` and base `.png` texture must exist for a statue to appear in the Creative Menu.
 - 🏷️ **Automatic Item Naming:** Display names are automatically derived and formatted from your model file names (e.g., `charizard_doll` ➔ **"Charizard Doll"**).
 - 🌟 **Optional Shiny Variants:** Automatically creates a Shiny variant item in your creative tab when a corresponding `_shiny.png` texture is detected.
 - 🔄 **Live In-Game Reloading:** Run `/pokedolls reload` to scan the folders, register new statues, and synchronize virtual resource packs with all clients on the fly.
 - 🛠️ **Interactive GUI Chisel:** Shift-right click or right-click any placed statue with the Chisel to adjust X/Y/Z offsets, 360° rotation, glowing effects, and animations.
-- 🛡️ **Crash Protection:** Built-in fallback rendering prevents game crashes or chunk corruption if placed model files are accidentally renamed or deleted.
+- 🧹 **Automatic World Cleanup:** When a statue's `.geo.json` model file is removed and `/pokedolls reload` is run (or on server restart), all placed instances of the deleted statue are automatically cleaned up from loaded chunks with a notification broadcast in chat.
 
 ---
 
@@ -37,10 +37,9 @@ Custom Pokedolls dynamically registers statues by parsing your custom models. Pl
     │   ├── tyrunt_pokedoll.geo.json      # GeckoLib 3D Geometry model
     │   └── charizard_doll.geo.json
     └── textures/
-        └── block/
-            ├── tyrunt_pokedoll.png       # Base texture
-            ├── tyrunt_pokedoll_shiny.png # Optional Shiny variant texture
-            └── charizard_doll.png
+        ├── tyrunt_pokedoll.png       # Base texture
+        ├── tyrunt_pokedoll_shiny.png # Optional Shiny variant texture
+        └── charizard_doll.png
 ```
 
 ---

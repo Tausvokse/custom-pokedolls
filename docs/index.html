@@ -115,7 +115,7 @@
                         </li>
                         <li>
                             <strong>Install Mod JAR</strong>
-                            <p>Place the <code>custom-pokedolls-1.0.0.jar</code> file into your `.minecraft/mods/` directory.</p>
+                            <p>Place the <code>custom-pokedolls-1.0.1-fix-stable.jar</code> file into your `.minecraft/mods/` directory.</p>
                         </li>
                         <li>
                             <strong>Launch & Generate</strong>
@@ -136,11 +136,15 @@
                         </li>
                         <li>
                             <strong>Client Directory Setup</strong>
-                            <p>All players connecting to the server must also place the matching <code>custom_pokedolls/</code> folder in their own Minecraft client directory so their client can visually render the 3D models and textures.</p>
+                            <p>All players connecting to the server must also place the matching <code>custom_pokedolls/</code> folder in their own Minecraft client directory so their client can render the 3D models.</p>
+                        </li>
+                        <li>
+                            <strong>Automatic Registry Sync (v1.0.1)</strong>
+                            <p>In v1.0.1-fix-stable, players no longer get disconnected due to registry mismatches when connecting! The client-side <code>RegistrySyncMixin</code> dynamically registers missing server species blocks/items at handshake.</p>
                         </li>
                         <li>
                             <strong>Live Multiplayer Hot-Reloading</strong>
-                            <p>When you add new statues while the server is running, type <code>/pokedolls reload</code> in server chat or console. The server dynamically registers the new statues and sends a sync packet to all online players—new items immediately render in creative tabs and player hands without restarting the game!</p>
+                            <p>When you add new statues while the server is running, type <code>/pokedolls reload</code>. The server registers the new statues and sends a sync packet—new items render in player hands immediately without reconnecting!</p>
                         </li>
                     </ol>
                 </article>
