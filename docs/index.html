@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom Pokedolls & Who's That Pokémon Minigame | Documentation</title>
-    <meta name="description" content="Official documentation for the Minecraft 1.21.1 Custom Pokedolls Mod and Who's That Pokémon Silhouette Guessing Minigame Mod for Cobblemon.">
+    <meta name="description" content="Official documentation for the Minecraft 1.21.1 Custom Pokedolls mod (standalone GeckoLib 3D statues, no Cobblemon required) and the Who's That Pokémon silhouette minigame for Cobblemon.">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +21,7 @@
             <div class="logo-group">
                 <div class="logo-icon">🔮</div>
                 <div>
-                    <h1>Minecraft Mod Hub <span class="badge">v1.1.0</span></h1>
+                    <h1>Minecraft Mod Hub <span class="badge">v2.0.0</span></h1>
                     <p class="subtitle">Custom Pokedolls & Who's That Pokémon Minigame</p>
                 </div>
         </div>
@@ -43,7 +43,7 @@
             <div class="hero-banner">
                 <div class="hero-text">
                     <h2>Transform Your World with Dynamic 3D Statues</h2>
-                    <p>Load custom Pokedolls directly from your file system using GeckoLib models and textures without ever rebuilding your mod or restarting Minecraft.</p>
+                    <p>Load custom Pokedolls directly from your file system using GeckoLib models and textures without ever rebuilding your mod or restarting Minecraft. Works fully standalone on Fabric 1.21.1 &mdash; no Cobblemon required.</p>
                 </div>
                 <div class="hero-stats">
                     <div class="stat-card">
@@ -62,6 +62,34 @@
             </div>
 
             <div class="grid-layout">
+                <article class="doc-card full-width" style="background: linear-gradient(135deg, rgba(124, 92, 255, 0.12) 0%, rgba(11, 12, 16, 0.85) 100%); border-color: var(--accent-purple, #7c5cff);">
+                    <div class="card-header">
+                        <h3>🎉 What's New in v2.0.0</h3>
+                    </div>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <div class="feat-icon">🎯</div>
+                            <h4>Pixel-Perfect Hitboxes</h4>
+                            <p>The selection and collision box now precisely matches the statue you see &mdash; at any rotation, size, and even for deep or complex models. No more clicking empty air next to your doll.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feat-icon">📐</div>
+                            <h4>Rock-Solid Placement</h4>
+                            <p>Statues now stay perfectly centered on their own block at any scale. Previously large statues could drift off to the side &mdash; that's fixed.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feat-icon">🖐️</div>
+                            <h4>Polished Item Display</h4>
+                            <p>Doll items now face you and sit neatly inside the inventory slot, correctly oriented and scaled to the cell.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feat-icon">🛡️</div>
+                            <h4>Safer &amp; More Stable</h4>
+                            <p>Placed statues are never auto-deleted if a model file goes missing (only reported in the log), plus fixes to shiny texture loading and important server-side stability &amp; security fixes.</p>
+                        </div>
+                    </div>
+                </article>
+
                 <article class="doc-card full-width">
                     <div class="card-header">
                         <h3>✨ Key Features</h3>
@@ -80,7 +108,7 @@
                         <div class="feature-item">
                             <div class="feat-icon">🌟</div>
                             <h4>Optional Shiny Variants</h4>
-                            <p>Automatically creates shiny item variants in your creative tab when a corresponding <code>_shiny.png</code> texture file is detected.</p>
+                            <p>Automatically creates shiny item variants in your creative tab when a matching shiny texture is detected &mdash; both <code>&lt;name&gt;_shiny.png</code> and <code>shiny_&lt;name&gt;.png</code> naming conventions are supported.</p>
                         </div>
                         <div class="feature-item">
                             <div class="feat-icon">🔄</div>
@@ -91,6 +119,11 @@
                             <div class="feat-icon">🛠️</div>
                             <h4>Interactive GUI Chisel</h4>
                             <p>Right-click any statue with the Pokedoll Chisel to adjust rotation, scale, position offsets, animation poses, and glowing luminescence.</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feat-icon">🌐</div>
+                            <h4>Automatic Multiplayer Sync</h4>
+                            <p>On dedicated servers, clients automatically download any missing models and textures over the network (hash-verified &amp; cached) &mdash; no manual file copying for players.</p>
                         </div>
                         <div class="feature-item">
                             <div class="feat-icon">🛡️</div>
@@ -115,7 +148,7 @@
                         </li>
                         <li>
                             <strong>Install Mod JAR</strong>
-                            <p>Place the <code>custom-pokedolls-1.0.1-fix-stable.jar</code> file into your `.minecraft/mods/` directory.</p>
+                            <p>Place the <code>custom-pokedolls-2.0.0.jar</code> file into your `.minecraft/mods/` directory.</p>
                         </li>
                         <li>
                             <strong>Launch & Generate</strong>
@@ -135,12 +168,12 @@
                             <p>Place your custom assets (<code>geo</code> and <code>textures</code>) inside a <code>custom_pokedolls/</code> folder in the server root directory. The server uses these files to register blocks/items and handle hitboxes.</p>
                         </li>
                         <li>
-                            <strong>Client Directory Setup</strong>
-                            <p>All players connecting to the server must also place the matching <code>custom_pokedolls/</code> folder in their own Minecraft client directory so their client can render the 3D models.</p>
+                            <strong>Automatic Client Asset Delivery</strong>
+                            <p>Players do <strong>not</strong> need to copy any files manually. On join (and after every reload), the client compares model/texture hashes against the server, then automatically downloads only the missing files over the network, verifies them with SHA-1, and caches them locally &mdash; so everyone sees the same statues out of the box.</p>
                         </li>
                         <li>
-                            <strong>Automatic Registry Sync (v1.0.1)</strong>
-                            <p>In v1.0.1-fix-stable, players no longer get disconnected due to registry mismatches when connecting! The client-side <code>RegistrySyncMixin</code> dynamically registers missing server species blocks/items at handshake.</p>
+                            <strong>Automatic Registry Sync</strong>
+                            <p>Players no longer get disconnected due to registry mismatches when connecting! The client-side <code>RegistrySyncMixin</code> dynamically registers missing server species blocks/items at handshake.</p>
                         </li>
                         <li>
                             <strong>Live Multiplayer Hot-Reloading</strong>
@@ -163,20 +196,24 @@
     ├── geo/
     │   ├── aerodactyl.geo.json
     │   └── carracosta.geo.json
-    └── textures/
-        ├── aerodactyl.png
-        ├── aerodactyl_shiny.png
-        └── carracosta.png">Copy</button>
+    ├── textures/
+    │   ├── aerodactyl.png
+    │   ├── aerodactyl_shiny.png
+    │   └── carracosta.png
+    └── animations/          (optional, for poses)
+        └── aerodactyl.animation.json">Copy</button>
                         </div>
                         <pre><code>.minecraft/
 └── custom_pokedolls/
     ├── geo/
     │   ├── aerodactyl.geo.json
     │   └── carracosta.geo.json
-    └── textures/
-        ├── aerodactyl.png
-        ├── aerodactyl_shiny.png
-        └── carracosta.png</code></pre>
+    ├── textures/
+    │   ├── aerodactyl.png
+    │   ├── aerodactyl_shiny.png
+    │   └── carracosta.png
+    └── animations/          (optional, for poses)
+        └── aerodactyl.animation.json</code></pre>
                     </div>
 
                     <h4>Naming Conventions & Display Names</h4>
@@ -188,7 +225,8 @@
                                 <code>carracosta_doll.geo.json</code> ➔ <span class="highlight">"Carracosta Doll"</span>
                             </div>
                         </li>
-                        <li><strong>Shiny Variants:</strong> Add a second texture file with the <code>_shiny.png</code> suffix (e.g. <code>aerodactyl_shiny.png</code>). The mod automatically registers a Shiny variant item with the <span class="highlight-gold">"Shiny "</span> prefix!</li>
+                        <li><strong>Shiny Variants:</strong> Add a second texture file with the <code>_shiny.png</code> suffix (e.g. <code>aerodactyl_shiny.png</code>), or the <code>shiny_</code> prefix (<code>shiny_aerodactyl.png</code>). The mod automatically registers a Shiny variant item with the <span class="highlight-gold">"Shiny "</span> prefix!</li>
+                        <li><strong>Animation Poses (optional):</strong> To enable the Chisel's pose options (Idle, Battle, Walk/Fly, Sleep), drop a matching GeckoLib animation file into <code>animations/&lt;name&gt;.animation.json</code>. Without it, statues simply stay in the default Static pose.</li>
                     </ul>
                 </article>
 
@@ -227,12 +265,14 @@
                         <p>The <strong>Pokedoll Customization Screen</strong> GUI will open with advanced controls:</p>
                     </div>
                     <div class="gui-controls-grid">
-                        <div class="ctrl-item"><strong>Position Offsets:</strong> Fine-tune X, Y, and Z rendering positions.</div>
-                        <div class="ctrl-item"><strong>Rotation Slider:</strong> Smooth 360° rotation slider.</div>
-                        <div class="ctrl-item"><strong>Glowing Effect:</strong> Toggle luminescence (Light Level 15).</div>
+                        <div class="ctrl-item"><strong>Scale Slider:</strong> Resize the statue smoothly from <code>0.5×</code> up to <code>15×</code>.</div>
+                        <div class="ctrl-item"><strong>Rotation Slider:</strong> Smooth <code>0°–360°</code> rotation around the vertical axis.</div>
+                        <div class="ctrl-item"><strong>Position Offsets:</strong> Fine-tune X, Y and Z placement (<code>-1.0</code> to <code>+1.0</code> blocks).</div>
+                        <div class="ctrl-item"><strong>Pose Selection:</strong> Cycle 5 animation poses: Static, Idle / Breathing, Battle Stance, Walk / Fly, Sleeping.</div>
+                        <div class="ctrl-item"><strong>Glowing Effect:</strong> Toggle full-bright luminescence (Light Level 15).</div>
                         <div class="ctrl-item"><strong>Auto-Rotate:</strong> Continuous spinning showcase animation.</div>
-                        <div class="ctrl-item"><strong>Pose Selection:</strong> Switch between GeckoLib animation poses.</div>
-                        <div class="ctrl-item"><strong>Reset Controls:</strong> Instant reset to default scale and rotation.</div>
+                        <div class="ctrl-item"><strong>Reset Buttons:</strong> One-click reset for offsets &amp; rotation, or scale back to <code>2.0×</code>.</div>
+                        <div class="ctrl-item"><strong>Save &amp; Close:</strong> Applies changes and syncs them to everyone on the server.</div>
                     </div>
                 </article>
 
@@ -251,7 +291,7 @@
                         </div>
                         <div class="tech-card">
                             <h4>Multiplayer Synchronization</h4>
-                            <p>When installed on a dedicated server, executing `/pokedolls reload` automatically dispatches network synchronization packets (`ReloadResourcesPayload`) to all connected clients.</p>
+                            <p>On join and on <code>/pokedolls reload</code>, the server sends each client a species catalog (<code>SyncCatalogPayload</code>). Clients then request only the assets they are missing and receive them via a chunked, hash-verified file transfer &mdash; no manual file copying required.</p>
                         </div>
                     </div>
                 </article>
